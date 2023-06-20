@@ -1,0 +1,12 @@
+E:\MyTest\Tetris\Release\Tetris.vcxproj.CopyComplete
+E:\MyTest\Tetris\Release\Tetris.exe
+E:\MyTest\Tetris\Release\concrt140.dll
+E:\MyTest\Tetris\Release\msvcp140.dll
+E:\MyTest\Tetris\Release\msvcp140_1.dll
+E:\MyTest\Tetris\Release\msvcp140_2.dll
+E:\MyTest\Tetris\Release\msvcp140_atomic_wait.dll
+E:\MyTest\Tetris\Release\msvcp140_codecvt_ids.dll
+E:\MyTest\Tetris\Release\vccorlib140.dll
+E:\MyTest\Tetris\Release\vcruntime140.dll
+E:\MyTest\Tetris\Release\vcamp140.dll
+E:\MyTest\Tetris\Release\vcomp140.dll

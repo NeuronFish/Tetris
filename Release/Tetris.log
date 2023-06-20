@@ -1,0 +1,8 @@
+﻿  Engine.cpp
+  Tetris.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(1363,5): warning MSB8012: TargetPath(E:\MyTest\Tetris\Release\.exe) не соответствует значению свойства выходного файла (E:\MyTest\Tetris\Release\Tetris.exe) для Linker. Это может привести к неправильной сборке проекта. Чтобы исправить это, убедитесь, что значения свойств $(OutDir), $(TargetName) и $(TargetExt) соответствуют значению, указанному в %(Link.OutputFile).
+  Создание кода
+  Previous IPDB not found, fall back to full compilation.
+  All 33 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Создание кода завершено
+  Tetris.vcxproj -> E:\MyTest\Tetris\Release\.exe
