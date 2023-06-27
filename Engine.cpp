@@ -5,6 +5,8 @@ HBRUSH BG1_Brush, BG2_Brush, BC_Brush, GC_Brush, RC_Brush, LC_Brush, DBC_Brush, 
 HWND Hwnd;
 HDC Hdc1;
 RECT PlaceArea, PlaceFArea, ScoreArea;
+//Figure* Fig;
+
 int XPose = 7, YPose = 15, XPoseF = 2, YPoseF = 3;
 int FPose = 1;
 int X2, X3, X4, Y2, Y3, Y4;
@@ -20,32 +22,32 @@ enum EFType
 };
 char Place[17][14] =
 {
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 };
 char PlaceF[6][5] =
 {
-	0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0
+	{ 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0 }
 };
 
 void Create_PenAndBrush(unsigned r, unsigned g, unsigned b, HPEN& pen, HBRUSH& brush)
@@ -77,6 +79,11 @@ void Init_Engine(HWND hwnd)
 	ScoreArea.top = 315;
 	ScoreArea.right = 205;
 	ScoreArea.bottom = 335;
+	/*
+	JFigure jf = JFigure(Place[0]);
+	Fig = &jf;
+	Fig->MoveLeft();
+	*/
 }
 
 void Init_Time()
@@ -456,93 +463,6 @@ int On_Key_Down(EKey_type EKtype)
 		switch (FType)
 		{
 		case ET_FType:
-			Place[YPose][XPose] = char(0);
-			Place[YPose + Y2][XPose + 1 + X2] = char(0);
-			Place[YPose + 1 + Y3][XPose + X3] = char(0);
-			Place[YPose + Y4][XPose - 1 + X4] = char(0);
-			switch (FPose)
-			{
-			case 1:
-				if (XPose == LStop)
-				{
-					XPose = XPose;
-				}
-				else if (Place[YPose][XPose - 2] != char(0))
-				{
-					XPose = XPose;
-				}
-				else if (Place[YPose + 1][XPose - 1] != char(0))
-				{
-					XPose = XPose;
-				}
-				else
-				{
-					XPose -= 1;
-				}
-				break;
-			case 2:
-				if (XPose == LStop)
-				{
-					XPose = XPose;
-				}
-				else if (Place[YPose - 1][XPose - 1] != char(0))
-				{
-					XPose = XPose;
-				}
-				else if (Place[YPose][XPose - 1] != char(0))
-				{
-					XPose = XPose;
-				}
-				else if (Place[YPose + 1][XPose - 1] != char(0))
-				{
-					XPose = XPose;
-				}
-				else
-				{
-					XPose -= 1;
-				}
-				break;
-			case 3:
-				if (XPose == LStop)
-				{
-					XPose = XPose;
-				}
-				else if (Place[YPose][XPose - 2] != char(0))
-				{
-					XPose = XPose;
-				}
-				else if (Place[YPose - 1][XPose - 1] != char(0))
-				{
-					XPose = XPose;
-				}
-				else
-				{
-					XPose -= 1;
-				}
-				break;
-			case 4:
-				if (XPose == LStop)
-				{
-					XPose = XPose;
-				}
-				else if (Place[YPose - 1][XPose - 1] != char(0))
-				{
-					XPose = XPose;
-				}
-				else if (Place[YPose][XPose - 2] != char(0))
-				{
-					XPose = XPose;
-				}
-				else if (Place[YPose + 1][XPose - 1] != char(0))
-				{
-					XPose = XPose;
-				}
-				else
-				{
-					XPose -= 1;
-				}
-				break;
-			}
 			break;
 		case EL_FType:
 			Place[YPose][XPose] = char(0);
@@ -1017,95 +937,7 @@ int On_Key_Down(EKey_type EKtype)
 	case EKt_Right:
 		switch (FType)
 		{
-		case ET_FType:
-			Place[YPose][XPose] = char(0);
-			Place[YPose + Y2][XPose + 1 + X2] = char(0);
-			Place[YPose + 1 + Y3][XPose + X3] = char(0);
-			Place[YPose + Y4][XPose - 1 + X4] = char(0);
-			switch (FPose)
-			{
-			case 1:
-				if (XPose == RStop)
-				{
-					XPose = XPose;
-				}
-				else if (Place[YPose][XPose + 2] != char(0))
-				{
-					XPose = XPose;
-				}
-				else if (Place[YPose + 1][XPose + 1] != char(0))
-				{
-					XPose = XPose;
-				}
-				else
-				{
-					XPose += 1;
-				}
-				break;
-			case 2:
-				if (XPose == RStop)
-				{
-					XPose = XPose;
-				}
-				else if (Place[YPose - 1][XPose + 1] != char(0))
-				{
-					XPose = XPose;
-				}
-				else if (Place[YPose][XPose + 2] != char(0))
-				{
-					XPose = XPose;
-				}
-				else if (Place[YPose + 1][XPose + 1] != char(0))
-				{
-					XPose = XPose;
-				}
-				else
-				{
-					XPose += 1;
-				}
-				break;
-			case 3:
-				if (XPose == RStop)
-				{
-					XPose = XPose;
-				}
-				else if (Place[YPose - 1][XPose + 1] != char(0))
-				{
-					XPose = XPose;
-				}
-				else if (Place[YPose][XPose + 2] != char(0))
-				{
-					XPose = XPose;
-				}
-				else
-				{
-					XPose += 1;
-				}
-				break;
-			case 4:
-				if (XPose == RStop)
-				{
-					XPose = XPose;
-				}
-				else if (Place[YPose - 1][XPose + 1] != char(0))
-				{
-					XPose = XPose;
-				}
-				else if (Place[YPose][XPose + 1] != char(0))
-				{
-					XPose = XPose;
-				}
-				else if (Place[YPose + 1][XPose + 1] != char(0))
-				{
-					XPose = XPose;
-				}
-				else
-				{
-					XPose += 1;
-				}
-				break;
-			}
-			break;
+		
 		case EL_FType:
 			Place[YPose][XPose] = char(0);
 			Place[YPose + 1 + Y2][XPose + X2] = char(0);
@@ -2364,7 +2196,7 @@ void Draw_function(HDC hdc, RECT& paint_area)
 {
 	Init_Wind(hdc);
 	Draw_Interface(hdc, paint_area);
-	Draw_Figures();
+	Draw_Figures(); //////////
 	if (C == true)
 	{
 		Draw_Place(hdc);
@@ -2377,147 +2209,6 @@ int Timer_On()
 	switch (FType)
 	{
 	case ET_FType:
-		switch (FPose)
-		{
-		case 1:
-			if (Place[YPose - 1][XPose] != char(0))
-			{
-				XPose = 7, YPose = 15, FPose = 1, LStop = 1, RStop = 12;
-				X2 = 0, X3 = 0, X4 = 0, Y2 = 0, Y3 = 0, Y4 = 0;
-				G = 1;
-				Draw_Figures();
-			}
-			else if (Place[YPose + Y2 - 1][XPose + 1 + X2] != char(0))
-			{
-				XPose = 7, YPose = 15, FPose = 1, LStop = 1, RStop = 12;
-				X2 = 0, X3 = 0, X4 = 0, Y2 = 0, Y3 = 0, Y4 = 0;
-				G = 1;
-				Draw_Figures();
-			}
-			else if (Place[YPose + Y4 - 1][XPose - 1 + X4] != char(0))
-			{
-				XPose = 7, YPose = 15, FPose = 1, LStop = 1, RStop = 12;
-				X2 = 0, X3 = 0, X4 = 0, Y2 = 0, Y3 = 0, Y4 = 0;
-				G = 1;
-				Draw_Figures();
-			}
-			else if (YPose == 0)
-			{
-				XPose = 7, YPose = 15, FPose = 1, LStop = 1, RStop = 12;
-				X2 = 0, X3 = 0, X4 = 0, Y2 = 0, Y3 = 0, Y4 = 0;
-				G = 1;
-				Draw_Figures();
-			}
-			else
-			{
-				Place[YPose][XPose] = char(0);
-				Place[YPose + Y2][XPose + 1 + X2] = char(0);
-				Place[YPose + 1 + Y3][XPose + X3] = char(0);
-				Place[YPose + Y4][XPose - 1 + X4] = char(0);
-				YPose -= 1;
-			}
-			break;
-		case 2:
-			if (Place[YPose + Y2 - 1][XPose + 1 + X2] != char(0))
-			{
-				XPose = 7, YPose = 15, FPose = 1, LStop = 1, RStop = 12;
-				X2 = 0, X3 = 0, X4 = 0, Y2 = 0, Y3 = 0, Y4 = 0;
-				G = 1;
-				Draw_Figures();
-			}
-			else if (Place[YPose - 2][XPose] != char(0))
-			{
-				XPose = 7, YPose = 15, FPose = 1, LStop = 1, RStop = 12;
-				X2 = 0, X3 = 0, X4 = 0, Y2 = 0, Y3 = 0, Y4 = 0;
-				G = 1;
-				Draw_Figures();
-			}
-			else if (YPose == 1)
-			{
-				XPose = 7, YPose = 15, FPose = 1, LStop = 1, RStop = 12;
-				X2 = 0, X3 = 0, X4 = 0, Y2 = 0, Y3 = 0, Y4 = 0;
-				G = 1;
-				Draw_Figures();
-			}
-			else
-			{
-				Place[YPose][XPose] = char(0);
-				Place[YPose + Y2][XPose + 1 + X2] = char(0);
-				Place[YPose + 1 + Y3][XPose + X3] = char(0);
-				Place[YPose + Y4][XPose - 1 + X4] = char(0);
-				YPose -= 1;
-			}
-			break;
-		case 3:
-			if (Place[YPose + 1 + Y3 - 1][XPose + X3] != char(0))
-			{
-				XPose = 7, YPose = 15, FPose = 1, LStop = 1, RStop = 12;
-				X2 = 0, X3 = 0, X4 = 0, Y2 = 0, Y3 = 0, Y4 = 0;
-				G = 1;
-				Draw_Figures();
-			}
-			else if (Place[YPose + Y2 - 1][XPose + 1 + X2] != char(0))
-			{
-				XPose = 7, YPose = 15, FPose = 1, LStop = 1, RStop = 12;
-				X2 = 0, X3 = 0, X4 = 0, Y2 = 0, Y3 = 0, Y4 = 0;
-				G = 1;
-				Draw_Figures();
-			}
-			else if (Place[YPose + Y4 - 1][XPose - 1 + X4] != char(0))
-			{
-				XPose = 7, YPose = 15, FPose = 1, LStop = 1, RStop = 12;
-				X2 = 0, X3 = 0, X4 = 0, Y2 = 0, Y3 = 0, Y4 = 0;
-				G = 1;
-				Draw_Figures();
-			}
-			else if (YPose == 1)
-			{
-				XPose = 7, YPose = 15, FPose = 1, LStop = 1, RStop = 12;
-				X2 = 0, X3 = 0, X4 = 0, Y2 = 0, Y3 = 0, Y4 = 0;
-				G = 1;
-				Draw_Figures();
-			}
-			else
-			{
-				Place[YPose][XPose] = char(0);
-				Place[YPose + Y2][XPose + 1 + X2] = char(0);
-				Place[YPose + 1 + Y3][XPose + X3] = char(0);
-				Place[YPose + Y4][XPose - 1 + X4] = char(0);
-				YPose -= 1;
-			}
-			break;
-		case 4:
-			if (Place[YPose - 1][XPose - 1] != char(0))
-			{
-				XPose = 7, YPose = 15, FPose = 1, LStop = 1, RStop = 12;
-				X2 = 0, X3 = 0, X4 = 0, Y2 = 0, Y3 = 0, Y4 = 0;
-				G = 1;
-				Draw_Figures();
-			}
-			else if (Place[YPose - 2][XPose] != char(0))
-			{
-				XPose = 7, YPose = 15, FPose = 1, LStop = 1, RStop = 12;
-				X2 = 0, X3 = 0, X4 = 0, Y2 = 0, Y3 = 0, Y4 = 0;
-				G = 1;
-				Draw_Figures();
-			}
-			else if (YPose == 1)
-			{
-				XPose = 7, YPose = 15, FPose = 1, LStop = 1, RStop = 12;
-				X2 = 0, X3 = 0, X4 = 0, Y2 = 0, Y3 = 0, Y4 = 0;
-				G = 1;
-				Draw_Figures();
-			}
-			else
-			{
-				Place[YPose][XPose] = char(0);
-				Place[YPose + Y2][XPose + 1 + X2] = char(0);
-				Place[YPose + 1 + Y3][XPose + X3] = char(0);
-				Place[YPose + Y4][XPose - 1 + X4] = char(0);
-				YPose -= 1;
-			}
-			break;
-		}
 		RedrawPlace();
 		break;
 	case EL_FType:

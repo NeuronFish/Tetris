@@ -16,6 +16,12 @@
     <Filter Include="Engine">
       <UniqueIdentifier>{d2d6865b-acae-4ffd-a212-75048c84dba2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Objects">
+      <UniqueIdentifier>{18ef15da-7687-4798-aa78-2cf2a50b7bf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Objects">
+      <UniqueIdentifier>{ed16bd7e-02d7-4325-929a-b4eca44210ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -33,6 +39,30 @@
     <ClInclude Include="Engine.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="LFigure.h">
+      <Filter>Файлы заголовков\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="TFigure.h">
+      <Filter>Файлы заголовков\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="JFigure.h">
+      <Filter>Файлы заголовков\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="RFigure.h">
+      <Filter>Файлы заголовков\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ZFigure.h">
+      <Filter>Файлы заголовков\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="IFigure.h">
+      <Filter>Файлы заголовков\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="BFigure.h">
+      <Filter>Файлы заголовков\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure.h">
+      <Filter>Файлы заголовков\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Tetris.cpp">
@@ -40,6 +70,27 @@
     </ClCompile>
     <ClCompile Include="Engine.cpp">
       <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="TFigure.cpp">
+      <Filter>Engine\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="LFigure.cpp">
+      <Filter>Engine\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="JFigure.cpp">
+      <Filter>Engine\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="RFigure.cpp">
+      <Filter>Engine\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ZFigure.cpp">
+      <Filter>Engine\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="IFigure.cpp">
+      <Filter>Engine\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="BFigure.cpp">
+      <Filter>Engine\Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
