@@ -9,8 +9,8 @@ private:
 	void PlaceFigure();
 public:
 	RFigure(char* place);
-	virtual void Rotate();
-	virtual void MoveLeft();
-	virtual void MoveRight();
-	virtual bool MoveDown();
+	void Rotate() override;
+	void MoveLeft() override;
+	void MoveRight() override;
+	bool MoveDown() override;
 };

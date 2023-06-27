@@ -9,8 +9,8 @@ private:
 	void PlaceFigure();
 public:
 	LFigure(char* place);
-	void Rotate();
-	void MoveLeft();
-	void MoveRight();
-	bool MoveDown();
+	void Rotate() override;
+	void MoveLeft() override;
+	void MoveRight() override;
+	bool MoveDown() override;
 };
