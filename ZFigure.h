@@ -1,7 +1,7 @@
 #pragma once
 #include "Figure.h"
 
-class ZFigure : Figure
+class ZFigure : public Figure
 {
 private:
 	int Y2 = 0, X3 = 0;

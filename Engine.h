@@ -21,6 +21,7 @@ enum EKey_type
 
 void Init_Engine(HWND hwnd);
 void Init_Time();
+void Init_Logic();
 void Draw_function(HDC hdc, RECT& paint_area);
 int On_Key_Down(EKey_type EKtype);
 int Timer_On();

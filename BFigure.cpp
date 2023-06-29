@@ -48,5 +48,6 @@ bool BFigure::MoveDown()
 		ClearFigure();
 		YPose++;
 		PlaceFigure();
+		return true;
 	}
 }

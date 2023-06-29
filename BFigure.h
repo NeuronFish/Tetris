@@ -1,7 +1,7 @@
 #pragma once
 #include "Figure.h"
 
-class BFigure : Figure
+class BFigure : public Figure
 {
 private:
 	void ClearFigure();
