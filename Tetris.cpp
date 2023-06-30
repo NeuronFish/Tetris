@@ -168,22 +168,22 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         switch (wParam)
         {
         case VK_LEFT:
-            On_Key_Down(EKt_Left);
+            On_Key_Down(EKey_type::Left);
             break;
         case VK_RIGHT:
-            On_Key_Down(EKt_Right);
+            On_Key_Down(EKey_type::Right);
             break;
         case VK_UP:
-            On_Key_Down(EKt_Up);
+            On_Key_Down(EKey_type::Up);
             break;
         case VK_DOWN:
-            On_Key_Down(EKt_Down);
+            On_Key_Down(EKey_type::Down);
             break;
         case 0x59:
-            On_Key_Down(EKt_Y);
+            On_Key_Down(EKey_type::Y);
             break;
         case 0x4E:
-            On_Key_Down(EKt_N);
+            On_Key_Down(EKey_type::N);
             break;
         }
         break;

@@ -1,2 +1,15 @@
-﻿  ZFigure.cpp
+﻿  BFigure.cpp
+  PlaceLogic.cpp
+  Engine.cpp
+  IFigure.cpp
+  JFigure.cpp
+  LFigure.cpp
+  RFigure.cpp
+  Tetris.cpp
+  TFigure.cpp
+  ZFigure.cpp
+  Создание кода...
+E:\MyTest\Tetris\TFigure.cpp(182): warning C4715: TFigure::MoveDown: значение возвращается не при всех путях выполнения
+E:\MyTest\Tetris\LFigure.cpp(197): warning C4715: LFigure::MoveDown: значение возвращается не при всех путях выполнения
+E:\MyTest\Tetris\JFigure.cpp(196): warning C4715: JFigure::MoveDown: значение возвращается не при всех путях выполнения
   Tetris.vcxproj -> E:\MyTest\Tetris\Debug\Tetris.exe

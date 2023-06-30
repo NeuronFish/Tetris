@@ -63,6 +63,9 @@
     <ClInclude Include="Figure.h">
       <Filter>Файлы заголовков\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="PlaceLogic.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Tetris.cpp">
@@ -91,6 +94,9 @@
     </ClCompile>
     <ClCompile Include="BFigure.cpp">
       <Filter>Engine\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="PlaceLogic.cpp">
+      <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

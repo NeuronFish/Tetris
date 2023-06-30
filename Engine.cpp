@@ -3,11 +3,8 @@
 HPEN BG1_Pen, BG2_Pen, BC_Pen, GC_Pen, RC_Pen, LC_Pen, DBC_Pen, VC_Pen, LVC_Pen, Wi_Pen;
 HBRUSH BG1_Brush, BG2_Brush, BC_Brush, GC_Brush, RC_Brush, LC_Brush, DBC_Brush, VC_Brush, LVC_Brush, Wi_Brush;
 HWND Hwnd;
-HDC Hdc1;
 RECT PlaceArea, PlaceFArea, ScoreArea;
 Figure* _Figure;
-
-const int XPoseF = 2, YPoseF = 3;
 int Score = 0, Time = 1000;
 int Choice, ChoiceF;
 bool EndBut = false;
@@ -46,7 +43,6 @@ void Create_PenAndBrush(unsigned r, unsigned g, unsigned b, HPEN& pen, HBRUSH& b
 	pen = CreatePen(PS_SOLID, 0, RGB(r, g, b));
 	brush = CreateSolidBrush(RGB(r, g, b));
 }
-
 void Init_Engine(HWND hwnd)
 {
 	Hwnd = hwnd;
@@ -71,17 +67,14 @@ void Init_Engine(HWND hwnd)
 	ScoreArea.right = 205;
 	ScoreArea.bottom = 335;
 }
-
 void Init_Time()
 {
 	SetTimer(Hwnd, Timer_ID, Time, 0);
 }
-
 void RedrawPlace()
 {
 	InvalidateRect(Hwnd, &PlaceArea, FALSE);
 }
-
 void Draw_PlaceF(HDC hdc)
 {
 	int x, y;
@@ -128,162 +121,27 @@ void Draw_PlaceF(HDC hdc)
 		}
 	}
 }
-
-void Init_Wind(HDC hdc)
+void Message(HDC hdc)
 {
-	Hdc1 = hdc;
+	SelectObject(hdc, Wi_Pen);
+	SelectObject(hdc, Wi_Brush);
+	Rectangle(hdc, 245, 270, 550, 360);
+	SelectObject(hdc, BG2_Pen);
+	SelectObject(hdc, BG2_Brush);
+	Rectangle(hdc, 240, 265, 545, 355);
+	TextOut(hdc, 365, 240, L"Game Over", lstrlen(L"Game Over"));
+	TextOut(hdc, 377, 280, L"Retry?", lstrlen(L"Retry?"));
+	TextOut(hdc, 330, 310, L"[Y]Yes!", lstrlen(L"[Y]Yes!"));
+	TextOut(hdc, 420, 310, L"[N]No", lstrlen(L"[N]No"));
 }
-
-void RemoveLine(int y)
-{
-	while (y > 0)
-	{
-		for (int x = 0; x < 14; x++)
-		{
-			Place[y][x] = Place[y - 1][x];
-		}
-		y--;
-	}
-}
-
-void CheckLine()
-{
-	bool containO;
-	for (int y = 0; y < 17; y++)
-	{
-		containO = false;
-		for (int x = 0; x < 14; x++)
-		{
-			if (Place[y][x] == '0')
-			{
-				containO = true;
-				break;
-			}
-		}
-		if (!containO)
-		{
-			RemoveLine(y);
-			Score += 100;
-			if (Score > 1300)
-			{
-				Time = 100;
-			}
-			else if (Score > 1000)
-			{
-				Time = 150;
-			}
-			else if (Score > 900)
-			{
-				Time = 200;
-			}
-			else if (Score > 700)
-			{
-				Time = 400;
-			}
-			else if (Score > 500)
-			{
-				Time = 600;
-			}
-			else if (Score > 200)
-			{
-				Time = 800;
-			}
-			Init_Time();
-			InvalidateRect(Hwnd, &ScoreArea, FALSE);
-			RedrawPlace();
-		}
-	}
-}
-
-bool CheckPlace()
-{
-	for (int y = 0; y < 5; y++)
-	{
-		for (int x = 3; x < 9; x++)
-		{
-			if (Place[y][x] != '0')
-				return false;
-		}
-	}
-	return true;
-}
-
-void Message()
-{
-	SelectObject(Hdc1, Wi_Pen);
-	SelectObject(Hdc1, Wi_Brush);
-	Rectangle(Hdc1, 245, 270, 550, 360);
-	SelectObject(Hdc1, BG2_Pen);
-	SelectObject(Hdc1, BG2_Brush);
-	Rectangle(Hdc1, 240, 265, 545, 355);
-	TextOut(Hdc1, 365, 240, L"Game Over", lstrlen(L"Game Over"));
-	TextOut(Hdc1, 377, 280, L"Retry?", lstrlen(L"Retry?"));
-	TextOut(Hdc1, 330, 310, L"[Y]Yes!", lstrlen(L"[Y]Yes!"));
-	TextOut(Hdc1, 420, 310, L"[N]No", lstrlen(L"[N]No"));
-}
-
-void Redraw_Choice()
-{
-	for (int y = 0; y < 6; y++)
-	{
-		for (int x = 0; x < 5; x++)
-		{
-			PlaceF[y][x] = '0';
-		}
-	}
-	switch (ChoiceF)
-	{
-	case 0:
-		PlaceF[YPoseF][XPoseF] = '1';
-		PlaceF[YPoseF - 1][XPoseF] = '1';
-		PlaceF[YPoseF][XPoseF - 1] = '1';
-		PlaceF[YPoseF][XPoseF + 1] = '1';
-		break;
-	case 1:
-		PlaceF[YPoseF][XPoseF] = '2';
-		PlaceF[YPoseF + 1][XPoseF] = '2';
-		PlaceF[YPoseF + 1][XPoseF + 1] = '2';
-		PlaceF[YPoseF - 1][XPoseF] = '2';
-		break;
-	case 2:
-		PlaceF[YPoseF][XPoseF] = '3';
-		PlaceF[YPoseF + 1][XPoseF] = '3';
-		PlaceF[YPoseF + 1][XPoseF - 1] = '3';
-		PlaceF[YPoseF - 1][XPoseF] = '3';
-		break;
-	case 3:
-		PlaceF[YPoseF][XPoseF] = '4';
-		PlaceF[YPoseF][XPoseF - 1] = '4';
-		PlaceF[YPoseF - 1][XPoseF] = '4';
-		PlaceF[YPoseF - 1][XPoseF + 1] = '4';
-		break;
-	case 4:
-		PlaceF[YPoseF][XPoseF] = '5';
-		PlaceF[YPoseF][XPoseF + 1] = '5';
-		PlaceF[YPoseF - 1][XPoseF] = '5';
-		PlaceF[YPoseF - 1][XPoseF - 1] = '5';
-		break;
-	case 5:
-		PlaceF[YPoseF][XPoseF] = '6';
-		PlaceF[YPoseF - 1][XPoseF] = '6';
-		PlaceF[YPoseF - 2][XPoseF] = '6';
-		PlaceF[YPoseF + 1][XPoseF] = '6';
-		break;
-	case 6:
-		PlaceF[YPoseF][XPoseF] = '7';
-		PlaceF[YPoseF][XPoseF - 1] = '7';
-		PlaceF[YPoseF - 1][XPoseF] = '7';
-		PlaceF[YPoseF - 1][XPoseF - 1] = '7';
-		break;
-	}
-	InvalidateRect(Hwnd, &PlaceFArea, FALSE);
-}
-
 void Set_Figure()
 {
 	delete _Figure;
-	CheckLine();
-	if (!CheckPlace())
+	CheckLine(Place[0], &Score, &Time);
+	Init_Time();
+	InvalidateRect(Hwnd, &ScoreArea, FALSE);
+	RedrawPlace();
+	if (!CheckPlace(Place[0]))
 	{
 		EndBut = true;
 		_Figure = new Figure(Place[0]); 
@@ -291,7 +149,8 @@ void Set_Figure()
 	}
 	Choice = ChoiceF;
 	ChoiceF = rand() % 7;
-	Redraw_Choice();
+	SetFutureFigure(PlaceF[0], ChoiceF);
+	InvalidateRect(Hwnd, &PlaceFArea, FALSE);
 	switch (Choice)
 	{
 	case 0:
@@ -317,67 +176,50 @@ void Set_Figure()
 		break;
 	}
 }
-
 void Init_Logic()
 {
 	ChoiceF = rand() % 7;
 	Set_Figure();
 }
-
 void Retry()
 {
-	int x, y;
-	for (y = 0; y < 17; y++)
-	{
-		for (x = 0; x < 14; x++)
-		{
-			Place[y][x] = '0';
-		}
-	}
-	for (y = 0; y < 6; y++)
-	{
-		for (x = 0; x < 5; x++)
-		{
-			PlaceF[y][x] = '0';
-		}
-	}
+	ClearPlace(Place[0]);
+	ClearFuturePlace(PlaceF[0]);
 	Score = 0, Time = 1000, EndBut = false;
 	Init_Logic();
 	RedrawPlace();
-	Redraw_Choice();
+	SetFutureFigure(PlaceF[0], ChoiceF);
 }
-
 int On_Key_Down(EKey_type EKtype)
 {
 	switch (EKtype)
 	{
-	case EKt_Left:
+	case EKey_type::Left:
 		_Figure->MoveLeft();
 		RedrawPlace();
 		break;
-	case EKt_Right:
+	case EKey_type::Right:
 		_Figure->MoveRight();
 		RedrawPlace();
 		break;
-	case EKt_Up:
+	case EKey_type::Up:
 		_Figure->Rotate();
 		RedrawPlace();
 		break;
-	case EKt_Down:
+	case EKey_type::Down:
 		Timer_On();
 		break;
-	case EKt_Y:
+	case EKey_type::Y:
 		if (EndBut == true)
 			Retry();
 		break;
-	case EKt_N:
+	case EKey_type::N:
 		if (EndBut == true)
 			exit(EXIT_SUCCESS);
 		break;
 	}
 	return 0;
 }
-
 void Draw_Place(HDC hdc)
 {
 	int x, y;
@@ -424,7 +266,6 @@ void Draw_Place(HDC hdc)
 		}
 	}
 }
-
 void Draw_Interface(HDC hdc, RECT& paint_area)
 {
 	Create_PenAndBrush(255, 128, 0, BG1_Pen, BG1_Brush);
@@ -436,7 +277,6 @@ void Draw_Interface(HDC hdc, RECT& paint_area)
 	SelectObject(hdc, BG2_Pen);
 	SelectObject(hdc, BG2_Brush);
 	Rectangle(hdc, 290, 0, 515, 540);
-	// 16 клеток
 	Rectangle(hdc, 118, 208, 199, 305);
 	Rectangle(hdc, 93, 320, 224, 340);
 	SetTextColor(hdc, RGB(0, 0, 0));
@@ -445,32 +285,29 @@ void Draw_Interface(HDC hdc, RECT& paint_area)
 	swprintf_s(t, L"%d", Score);
 	if (Score > 9999)
 	{
-		TextOut(Hdc1, 138, 322, t, lstrlen(L"00000"));
+		TextOut(hdc, 138, 322, t, lstrlen(L"00000"));
 	}
 	else if (Score > 999)
 	{
-		TextOut(Hdc1, 138, 322, t, lstrlen(L"0000"));
+		TextOut(hdc, 138, 322, t, lstrlen(L"0000"));
 	}
 	else if (Score > 99)
 	{
-		TextOut(Hdc1, 138, 322, t, lstrlen(L"000"));
+		TextOut(hdc, 138, 322, t, lstrlen(L"000"));
 	}
 	else if (Score == 0)
 	{
-		TextOut(Hdc1, 138, 322, t, lstrlen(L"0"));
+		TextOut(hdc, 138, 322, t, lstrlen(L"0"));
 	}
 }
-
 void Draw_function(HDC hdc, RECT& paint_area)
 {
-	Init_Wind(hdc);
 	Draw_Interface(hdc, paint_area);
 	Draw_Place(hdc);
 	Draw_PlaceF(hdc);
 	if (EndBut == true)
-		Message();
+		Message(hdc);
 }
-
 int Timer_On()
 {
 	if (EndBut != true)

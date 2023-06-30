@@ -3,20 +3,13 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string>
-#include "Figure.h"
-#include "BFigure.h"
-#include "IFigure.h"
-#include "JFigure.h"
-#include "LFigure.h"
-#include "RFigure.h"
-#include "TFigure.h"
-#include "ZFigure.h"
+#include "PlaceLogic.h"
 
 const int Timer_ID = WM_USER + 1;
 
-enum EKey_type
+enum class EKey_type
 {
-	EKt_Left, EKt_Right, EKt_Up, EKt_Down, EKt_Y, EKt_N
+	Left, Right, Up, Down, Y, N
 };
 
 void Init_Engine(HWND hwnd);
