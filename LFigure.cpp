@@ -54,20 +54,21 @@ void LFigure::Rotate()
 			X2 = -1;
 			Y2 = -1;
 			X1 = 1;
-			Y1 = -1;
+			Y1 = 1;
 			LStop = 1;
 		}
 		break;
 	case 2:
-		if (Place[XPose - 1 + (YPose - 1) * 14] != '0' || Place[XPose + (YPose - 1) * 14] != '0')
+		if (Place[XPose - 1 + (YPose - 1) * 14] != '0' || Place[XPose + (YPose - 1) * 14] != '0' || 
+		Place[XPose + (YPose + 1) * 14] != '0')
 			FPose--;
 		else
 		{
-			Y3 = 2;
+			Y3 = -2;
 			X2 = 0;
-			Y2 = 2;
+			Y2 = 0;
 			X1 = 0;
-			Y1 = -2;
+			Y1 = 0;
 			RStop = 13;
 		}
 		break;
@@ -78,11 +79,10 @@ void LFigure::Rotate()
 		else
 		{
 			X3 = 0;
-			Y3 = 2;
-			X2 = 1;
-			Y2 = 1;
-			X1 = -1;
-			Y1 = -1;
+			X2 = -1;
+			Y2 = -1;
+			X1 = 1;
+			Y1 = 1;
 			RStop = 12;
 		}
 		break;
@@ -123,8 +123,8 @@ void LFigure::MoveRight()
 	switch (FPose)
 	{
 	case 0:
-		if (XPose != RStop && Place[XPose + 2 + (YPose + 1)] == '0' && Place[XPose + 1 + YPose * 14] == '0' &&
-			Place[XPose + 1 + YPose * 14] == '0')
+		if (XPose != RStop && Place[XPose + 2 + (YPose + 1) * 14] == '0' && Place[XPose + 1 + YPose * 14] == '0' &&
+			Place[XPose + 1 + (YPose - 1) * 14] == '0')
 			XPose++;
 		break;
 	case 1:

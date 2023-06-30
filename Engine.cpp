@@ -7,7 +7,7 @@ HDC Hdc1;
 RECT PlaceArea, PlaceFArea, ScoreArea;
 Figure* _Figure;
 
-int XPoseF = 2, YPoseF = 3;
+const int XPoseF = 2, YPoseF = 3;
 int Score = 0, Time = 1000;
 int Choice, ChoiceF;
 bool EndBut = false;
@@ -220,8 +220,6 @@ void Message()
 	TextOut(Hdc1, 377, 280, L"Retry?", lstrlen(L"Retry?"));
 	TextOut(Hdc1, 330, 310, L"[Y]Yes!", lstrlen(L"[Y]Yes!"));
 	TextOut(Hdc1, 420, 310, L"[N]No", lstrlen(L"[N]No"));
-	EndBut = true;
-	RedrawPlace();
 }
 
 void Redraw_Choice()
@@ -283,16 +281,17 @@ void Redraw_Choice()
 
 void Set_Figure()
 {
+	delete _Figure;
 	CheckLine();
 	if (!CheckPlace())
 	{
-		Message();
+		EndBut = true;
+		_Figure = new Figure(Place[0]); 
 		return;
 	}
 	Choice = ChoiceF;
 	ChoiceF = rand() % 7;
 	Redraw_Choice();
-	delete _Figure;
 	switch (Choice)
 	{
 	case 0:
@@ -369,15 +368,11 @@ int On_Key_Down(EKey_type EKtype)
 		break;
 	case EKt_Y:
 		if (EndBut == true)
-		{
 			Retry();
-		}
 		break;
 	case EKt_N:
 		if (EndBut == true)
-		{
 			exit(EXIT_SUCCESS);
-		}
 		break;
 	}
 	return 0;
@@ -472,6 +467,8 @@ void Draw_function(HDC hdc, RECT& paint_area)
 	Draw_Interface(hdc, paint_area);
 	Draw_Place(hdc);
 	Draw_PlaceF(hdc);
+	if (EndBut == true)
+		Message();
 }
 
 int Timer_On()

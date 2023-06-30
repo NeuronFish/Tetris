@@ -83,7 +83,7 @@ bool RFigure::MoveDown()
 {
 	if (FPose == 0)
 	{
-		if (YPose == 15 || Place[XPose - 1 + (YPose + 2) * 14] != '0' || Place[XPose + (YPose + 1) * 14] != '0' ||
+		if (YPose == 15 || Place[XPose - 1 + (YPose + 2) * 14] != '0' || Place[XPose + (YPose + 2) * 14] != '0' ||
 			Place[XPose + 1 + (YPose + 1) * 14] != '0')
 			return false;
 		else

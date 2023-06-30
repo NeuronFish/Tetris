@@ -4,8 +4,8 @@ void ZFigure::ClearFigure()
 {
 	Place[XPose + YPose * 14] = '0';
 	Place[XPose - 1 + YPose * 14] = '0';
-	Place[XPose + (YPose + 1) * 14] = '0';
-	Place[XPose + 1 + (YPose + 1) * 14] = '0';
+	Place[XPose + (YPose + 1 + Y2) * 14] = '0';
+	Place[XPose + X3 + 1 + (YPose + 1) * 14] = '0';
 }
 void ZFigure::PlaceFigure()
 {
@@ -21,8 +21,8 @@ ZFigure::ZFigure(char* place) : Figure(place)
 void ZFigure::Rotate()
 {
 	Place[XPose - 1 + YPose * 14] = '0';
-	Place[XPose + (YPose + 1) * 14] = '0';
-	Place[XPose + 1 + (YPose + 1) * 14] = '0';
+	Place[XPose + (YPose + 1 + Y2) * 14] = '0';
+	Place[XPose + X3 + 1 + (YPose + 1) * 14] = '0';
 	if (FPose == 0)
 	{
 		if (Place[XPose - 1 + (YPose + 1) * 14] == '0' && Place[XPose + (YPose - 1) * 14] == '0')
@@ -44,8 +44,8 @@ void ZFigure::Rotate()
 		}
 	}
 	Place[XPose - 1 + YPose * 14] = '5';
-	Place[XPose + (YPose + 1) * 14] = '5';
-	Place[XPose + 1 + (YPose + 1) * 14] = '5';
+	Place[XPose + (YPose + 1 + Y2) * 14] = '5';
+	Place[XPose + X3 + 1 + (YPose + 1) * 14] = '5';
 }
 void ZFigure::MoveLeft()
 {
@@ -83,7 +83,7 @@ bool ZFigure::MoveDown()
 {
 	if (FPose == 0)
 	{
-		if (XPose == 15 || Place[XPose - 1 + (YPose + 1) * 14] != '0' || Place[XPose + (YPose + 2) * 14] != '0' ||
+		if (YPose == 15 || Place[XPose - 1 + (YPose + 1) * 14] != '0' || Place[XPose + (YPose + 2) * 14] != '0' ||
 			Place[XPose + 1 + (YPose + 2) * 14] != '0')
 			return false;
 		else
@@ -96,7 +96,7 @@ bool ZFigure::MoveDown()
 	}
 	else
 	{
-		if (XPose == 15 || Place[XPose - 1 + (YPose + 2) * 14] != '0' || Place[XPose + (YPose + 1) * 14] != '0')
+		if (YPose == 15 || Place[XPose - 1 + (YPose + 2) * 14] != '0' || Place[XPose + (YPose + 1) * 14] != '0')
 			return false;
 		else
 		{

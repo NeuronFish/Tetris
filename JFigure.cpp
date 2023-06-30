@@ -148,7 +148,7 @@ bool JFigure::MoveDown()
 	switch (FPose)
 	{
 	case 0:
-		if (XPose == 12 || Place[XPose - 1 + (YPose + 2) * 14] != '0' || Place[XPose + (YPose + 2) * 14] != '0')
+		if (YPose == 15 || Place[XPose - 1 + (YPose + 2) * 14] != '0' || Place[XPose + (YPose + 2) * 14] != '0')
 			return false;
 		else
 		{
@@ -159,7 +159,7 @@ bool JFigure::MoveDown()
 		}
 		break;
 	case 1:
-		if (XPose == 13 || Place[XPose - 1 + (YPose + 1) * 14] != '0' || Place[XPose + (YPose + 1) * 14] != '0' ||
+		if (YPose == 16 || Place[XPose - 1 + (YPose + 1) * 14] != '0' || Place[XPose + (YPose + 1) * 14] != '0' ||
 			Place[XPose + 1 + (YPose + 1) * 14] != '0')
 			return false;
 		else
@@ -170,7 +170,7 @@ bool JFigure::MoveDown()
 			return true;
 		}
 	case 2:
-		if (XPose == 12 || Place[XPose + (YPose + 2) * 14] != '0' || Place[XPose + 1 + YPose * 14] != '0')
+		if (YPose == 15 || Place[XPose + (YPose + 2) * 14] != '0' || Place[XPose + 1 + YPose * 14] != '0')
 			return false;
 		else
 		{
@@ -181,7 +181,7 @@ bool JFigure::MoveDown()
 		}
 		break;
 	case 3:
-		if (XPose == 12 || Place[XPose - 1 + (YPose + 1) * 14] != '0' || Place[XPose + (YPose + 1) * 14] != '0' &&
+		if (YPose == 15 || Place[XPose - 1 + (YPose + 1) * 14] != '0' || Place[XPose + (YPose + 1) * 14] != '0' &&
 			Place[XPose + 1 + (YPose + 1) * 14] != '0')
 			return false;
 		else

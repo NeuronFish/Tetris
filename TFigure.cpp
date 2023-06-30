@@ -10,9 +10,9 @@ void TFigure::ClearFigure()
 void TFigure::PlaceFigure()
 {
 	Place[XPose + YPose * 14] = '1';
-	Place[XPose + (YPose - 1) * 14] = '1';
-	Place[XPose - 1 + YPose * 14] = '1';
-	Place[XPose + 1 + YPose * 14] = '1';
+	Place[XPose + (YPose - 1 + Y1) * 14] = '1';
+	Place[XPose - 1 + X2 + (YPose + Y2) * 14] = '1';
+	Place[XPose + 1 + X3 + (YPose + Y3) * 14] = '1';
 }
 TFigure::TFigure(char* place) : Figure(place)
 {

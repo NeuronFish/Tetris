@@ -7,14 +7,13 @@ protected:
 	char* Place;
 	int FPose = 0;
 	int LStop = 1, RStop = 12;
-
+public:
 	Figure(char* place)
 	{
 		Place = place;
 	}
-public:
-	virtual void Rotate() = 0;
-	virtual void MoveLeft() = 0;
-	virtual void MoveRight() = 0;
-	virtual bool MoveDown() = 0;
+	virtual void Rotate() {}
+	virtual void MoveLeft() {}
+	virtual void MoveRight() {}
+	virtual bool MoveDown() { return false; }
 };
